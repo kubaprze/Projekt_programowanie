@@ -74,6 +74,11 @@ class GameDialog: public wxDialog
         std::set<int> square_b = {99,100,110,111};
         std::set<int> square_y = {108,109,119,120};
 
+
+
+
+
+
         int current_g[4] = {0,1,11,12};
         int current_r[4] = {9,10,20,21};
         int current_y[4] = {108,109,119,120};
