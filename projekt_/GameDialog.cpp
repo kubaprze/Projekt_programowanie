@@ -156,7 +156,7 @@ GameDialog::~GameDialog()
 void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
 {
     int pole = id2nr[event.GetId()]; // nr pola na ktore klikamy
-
+     if(sprawdz(gra.gracz,pole)){                                             //tu ma sprawdzac czy pole na ktore kliknie zawiera sie w current_ w zaleznosci od gracza
     if(gra.los==6 &&                                // jezeli los = 6 i klikamy an jeden z kwadratow bedacych baza pionkow to wywoluje funkcje wstaw piona
        ((square_g.find(pole) != square_g.end()) ||
         (square_r.find(pole) != square_r.end()) ||
@@ -173,7 +173,8 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
 
 
     //wxMessageBox(std::to_string(id2nr[event.GetId()]));  //test czy pole jest polaczone z fukncja ObBitmapButton1click
-
+   // } else
+} else {wxMessageBox("To nie twoj pionek!!"); }
 }
 
 
@@ -204,12 +205,14 @@ void GameDialog::OnButton1Click(wxCommandEvent& event) // przycisk od losowania
 void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli argument los
 {
     if(gra.gracz == 0){
+            //if(gra.ile_w_bazie_g!=0){
         pola[44]->SetBitmap(pionki[0]);
         pola[home_g[gra.ile_w_bazie_g-1]]->SetBitmap(rysunki[0]);
         current_g[gra.ile_w_bazie_g-1] = 44;
         gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
         Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
-    }
+        //tutaj diskonekt pola w bazie zeby nie dalo sie go kliknac
+    }//}
     if(gra.gracz == 1){
         pola[6]->SetBitmap(pionki[1]);
         pola[home_r[gra.ile_w_bazie_r-1]]->SetBitmap(rysunki[1]);
@@ -234,4 +237,18 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
 
 
 }
-
+bool GameDialog::sprawdz(int x,int p)
+{
+    if(x==0){
+       return (curr_g.find(p) != curr_g.end());
+       }
+    if(x==1){
+        return (curr_r.find(p) != curr_r.end());
+    }
+    if(x==2){
+        return (curr_y.find(p) != curr_y.end());
+    }
+    if(x==3){
+        return (curr_b.find(p) != curr_b.end());
+    }
+}

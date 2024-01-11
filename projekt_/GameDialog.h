@@ -21,6 +21,7 @@ class GameDialog: public wxDialog
 		GameDialog(wxWindow* parent,wxWindowID id=wxID_ANY);
 		virtual ~GameDialog();
 		int tura = 1;
+		bool sprawdz(int x,int p);
 
 		//(*Declarations(GameDialog)
 		wxBitmapButton* BitmapButton1;
@@ -75,9 +76,10 @@ class GameDialog: public wxDialog
         std::set<int> square_y = {108,109,119,120};
 
 
-
-
-
+        std::set<int> curr_g = {0,1,11,12};
+        std::set<int> curr_r = {9,10,20,21};
+        std::set<int> curr_y = {108,109,119,120};
+        std::set<int> curr_b = {99,100,110,111};
 
         int current_g[4] = {0,1,11,12};
         int current_r[4] = {9,10,20,21};
