@@ -285,21 +285,23 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
          if(pol==current_g[i]){
             k=i;
         }}
-             for(int g=0;g<46;g++)
+             for(int g=0;g<45;g++)
              {
                  if(current_g[k]==valid_g[g])
                  {
                     if(g+los>(43-gra.ile_skonczylo_g))
                     {
                         //diskonet pola[current_g]
-                        pola[43-gra.ile_skonczylo_g]->SetBitmap(pionki[3]);
+                        pola[43-gra.ile_skonczylo_g]->SetBitmap(pionki[0]);
                         current_g[k]=valid_g[43-gra.ile_skonczylo_g];
                         gra.ile_skonczylo_g=gra.ile_skonczylo_g+1;
+                        g=45;
                     }else{
                      current_g[k]=valid_g[g+los];
                      //diskonekt pola[current_g]
-                     pola[current_g[k]]->SetBitmap(pionki[3]);
+                     pola[current_g[k]]->SetBitmap(pionki[0]);
                      Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     g=45;
                  }
              }
          }}
@@ -310,21 +312,23 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
          if(pol==current_r[i]){
             k=i;
         }}
-             for(int g=0;g<46;g++)
+             for(int g=0;g<45;g++)
              {
                  if(current_r[k]==valid_r[g])
                  {
                     if(g+los>(43-gra.ile_skonczylo_r))
                     {
                         //diskonet pola[current_g]
-                        pola[43-gra.ile_skonczylo_r]->SetBitmap(pionki[3]);
+                        pola[43-gra.ile_skonczylo_r]->SetBitmap(pionki[1]);
                         current_r[k]=valid_r[43-gra.ile_skonczylo_r];
                         gra.ile_skonczylo_r=gra.ile_skonczylo_r+1;
+                        g=45;
                     }else{
                      current_r[k]=valid_r[g+los];
                      //diskonekt pola[current_g]
-                     pola[current_r[k]]->SetBitmap(pionki[3]);
+                     pola[current_r[k]]->SetBitmap(pionki[1]);
                      Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     g=45;
                  }
              }
          }
@@ -336,7 +340,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
          if(pol==current_y[i]){
             k=i;
         }}
-             for(int g=0;g<46;g++)
+             for(int g=0;g<45;g++)
              {
                  if(current_y[k]==valid_y[g])
                  {
@@ -346,11 +350,13 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                         pola[43-gra.ile_skonczylo_y]->SetBitmap(pionki[2]);
                         current_y[k]=valid_y[43-gra.ile_skonczylo_y];
                         gra.ile_skonczylo_y=gra.ile_skonczylo_y+1;
+                        g=45;
                     }else{
                      current_y[k]=valid_y[g+los];
                      //diskonekt pola[current_g]
                      pola[current_y[k]]->SetBitmap(pionki[2]);
                      Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     g=45;
                  }
              }
          }
@@ -362,7 +368,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
          if(pol==current_b[i]){
             k=i;
         }}
-             for(int g=0;g<46;g++)
+             for(int g=0;g<45;g++)
              {
                  if(current_b[k]==valid_b[g])
                  {
@@ -372,11 +378,13 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                         pola[43-gra.ile_skonczylo_b]->SetBitmap(pionki[3]);
                         current_b[k]=valid_b[43-gra.ile_skonczylo_b];
                         gra.ile_skonczylo_b=gra.ile_skonczylo_b+1;
+                        g=45;
                     }else{
                      current_b[k]=valid_b[g+los];
                      //diskonekt pola[current_g]
                      pola[current_b[k]]->SetBitmap(pionki[3]);
                      Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     g=45;
                  }
              }
          }
