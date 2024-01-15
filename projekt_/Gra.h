@@ -14,8 +14,6 @@ class Gra
         ~Gra();
         void ruch(int kolor, int kostka); // kolor i liczbe na kostce zwraca nr bitmapy na ktra rusza sie pion
 
-        bool sprawdz(int k, int p); // kolor
-
         int tura = 1;
 
         int gracz = 0;
@@ -25,7 +23,10 @@ class Gra
         int ile_w_bazie_g = 4;
         int ile_w_bazie_b = 4;
 
-
+        int ile_skonczylo_r = 0;
+        int ile_skonczylo_y = 0;
+        int ile_skonczylo_g = 0;
+        int ile_skonczylo_b = 0;
         void losuj();
 
         int GetLos();
@@ -36,10 +37,7 @@ class Gra
     private:
         // 4 listy dostępnych pól każda dla każdego koloru
 
-        int id_gracza; // 0 - niebieski
-                       // 1 - zielony
-                       // 2 - czerwony
-                       // 3 - zolty
+
 
 
 

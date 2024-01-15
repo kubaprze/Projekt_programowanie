@@ -165,8 +165,10 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
     {
         wstaw_piona();  // wstawia piona
         gra.los=0;      // resetuje los zeby nie mozna bylo wstawic na raz wszystkich pionow
+    }else{
+    ruch(gra.los,pole);
+    gra.los=0;
     }
-
 
 
 
@@ -211,6 +213,8 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         current_g[gra.ile_w_bazie_g-1] = 44;
         gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
         Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+        curr_g.erase(home_g[gra.ile_w_bazie_g-1]);
+        curr_g.insert(44);
         //tutaj diskonekt pola w bazie zeby nie dalo sie go kliknac
     }//}
     if(gra.gracz == 1){
@@ -219,6 +223,8 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         current_r[gra.ile_w_bazie_r-1] = 6;
         gra.ile_w_bazie_r = gra.ile_w_bazie_r-1;
         Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+        curr_r.erase(home_r[gra.ile_w_bazie_r-1]);
+        curr_r.insert(6);
     }
     if(gra.gracz == 2){
         pola[76]->SetBitmap(pionki[2]);
@@ -226,6 +232,8 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         current_y[gra.ile_w_bazie_y-1] = 76;
         gra.ile_w_bazie_y = gra.ile_w_bazie_y-1;
         Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+        curr_y.erase(home_y[gra.ile_w_bazie_y-1]);
+        curr_y.insert(76);
     }
     if(gra.gracz == 3){
         pola[114]->SetBitmap(pionki[3]);
@@ -233,6 +241,8 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         current_b[gra.ile_w_bazie_b-1] = 114;
         gra.ile_w_bazie_b = gra.ile_w_bazie_b-1;
         Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+        curr_b.erase(home_b[gra.ile_w_bazie_b-1]); // usuwa id z bazy
+        curr_b.insert(114); // dodaje id pole startowego
     }
 
 
@@ -250,5 +260,125 @@ bool GameDialog::sprawdz(int x,int p)
     }
     if(x==3){
         return (curr_b.find(p) != curr_b.end());
+    }
+}
+void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
+{
+
+    if(pol==6){                                                // sprawdza czy nie jest to kolorowe pole jak tak to ustawia bitmape na ten kolor
+       pola[pol]->SetBitmap(rysunki[1]);
+    }
+    if(pol==76){
+        pola[pol]->SetBitmap(rysunki[2]);
+    }
+    if(pol==114){
+        pola[pol]->SetBitmap(rysunki[3]);
+    }
+    if(pol==44){
+        pola[pol]->SetBitmap(rysunki[0]);
+    }else{
+    pola[pol]->SetBitmap(rysunki[5]);}
+    if(gra.gracz == 0){
+         int k;
+       for(int i=0;i<4;i++)
+        {
+         if(pol==current_g[i]){
+            k=i;
+        }}
+             for(int g=0;g<46;g++)
+             {
+                 if(current_g[k]==valid_g[g])
+                 {
+                    if(g+los>(43-gra.ile_skonczylo_g))
+                    {
+                        //diskonet pola[current_g]
+                        pola[43-gra.ile_skonczylo_g]->SetBitmap(pionki[3]);
+                        current_g[k]=valid_g[43-gra.ile_skonczylo_g];
+                        gra.ile_skonczylo_g=gra.ile_skonczylo_g+1;
+                    }else{
+                     current_g[k]=valid_g[g+los];
+                     //diskonekt pola[current_g]
+                     pola[current_g[k]]->SetBitmap(pionki[3]);
+                     Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                 }
+             }
+         }}
+    if(gra.gracz == 1){
+         int k;
+       for(int i=0;i<4;i++)
+        {
+         if(pol==current_r[i]){
+            k=i;
+        }}
+             for(int g=0;g<46;g++)
+             {
+                 if(current_r[k]==valid_r[g])
+                 {
+                    if(g+los>(43-gra.ile_skonczylo_r))
+                    {
+                        //diskonet pola[current_g]
+                        pola[43-gra.ile_skonczylo_r]->SetBitmap(pionki[3]);
+                        current_r[k]=valid_r[43-gra.ile_skonczylo_r];
+                        gra.ile_skonczylo_r=gra.ile_skonczylo_r+1;
+                    }else{
+                     current_r[k]=valid_r[g+los];
+                     //diskonekt pola[current_g]
+                     pola[current_r[k]]->SetBitmap(pionki[3]);
+                     Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                 }
+             }
+         }
+    }
+    if(gra.gracz == 2){
+        int k;
+       for(int i=0;i<4;i++)
+        {
+         if(pol==current_y[i]){
+            k=i;
+        }}
+             for(int g=0;g<46;g++)
+             {
+                 if(current_y[k]==valid_y[g])
+                 {
+                    if(g+los>(43-gra.ile_skonczylo_y))
+                    {
+                        //diskonet pola[current_g]
+                        pola[43-gra.ile_skonczylo_y]->SetBitmap(pionki[2]);
+                        current_y[k]=valid_y[43-gra.ile_skonczylo_y];
+                        gra.ile_skonczylo_y=gra.ile_skonczylo_y+1;
+                    }else{
+                     current_y[k]=valid_y[g+los];
+                     //diskonekt pola[current_g]
+                     pola[current_y[k]]->SetBitmap(pionki[2]);
+                     Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                 }
+             }
+         }
+    }
+    if(gra.gracz == 3){
+       int k;
+       for(int i=0;i<4;i++)
+        {
+         if(pol==current_b[i]){
+            k=i;
+        }}
+             for(int g=0;g<46;g++)
+             {
+                 if(current_b[k]==valid_b[g])
+                 {
+                    if(g+los>(43-gra.ile_skonczylo_b))
+                    {
+                        //diskonet pola[current_g]
+                        pola[43-gra.ile_skonczylo_b]->SetBitmap(pionki[3]);
+                        current_b[k]=valid_b[43-gra.ile_skonczylo_b];
+                        gra.ile_skonczylo_b=gra.ile_skonczylo_b+1;
+                    }else{
+                     current_b[k]=valid_b[g+los];
+                     //diskonekt pola[current_g]
+                     pola[current_b[k]]->SetBitmap(pionki[3]);
+                     Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                 }
+             }
+         }
     }
 }

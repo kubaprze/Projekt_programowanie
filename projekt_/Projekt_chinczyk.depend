@@ -5960,3 +5960,94 @@
 	<cstdlib>
 	<ctime>
 
+1705346602 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
+	"GameDialog.h"
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/intl.h>
+	<wx/string.h>
+	<string>
+	<wx/msgdlg.h>
+
+1705340911 c:\users\igore\documents\github\projekt_programowanie\projekt_\gamedialog.h
+	<map>
+	"Gra.h"
+	<wx/bmpbuttn.h>
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/statbmp.h>
+	<wx/stattext.h>
+
+1705344462 c:\users\igore\documents\github\projekt_programowanie\projekt_\gra.h
+	<map>
+	<set>
+	<iostream>
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\statbmp.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/bmpbndl.h"
+	"wx/icon.h"
+	"wx/univ/statbmp.h"
+	"wx/msw/statbmp.h"
+	"wx/motif/statbmp.h"
+	"wx/gtk/statbmp.h"
+	"wx/gtk1/statbmp.h"
+	"wx/osx/statbmp.h"
+	"wx/qt/statbmp.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\univ\statbmp.h
+	"wx/bitmap.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\msw\statbmp.h
+	"wx/control.h"
+	"wx/icon.h"
+	"wx/bitmap.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\motif\statbmp.h
+	"wx/motif/bmpmotif.h"
+	"wx/icon.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\gtk\statbmp.h
+	"wx/icon.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\gtk1\statbmp.h
+	"wx/icon.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\osx\statbmp.h
+	"wx/statbmp.h"
+
+1676299539 c:\cb-dodatki\wxwidgets-3.2.2.1-mono64\include\wx\qt\statbmp.h
+
+1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\gra.cpp
+	"Gra.h"
+	<cstdlib>
+	<ctime>
+
+1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\projekt_chinczykapp.cpp
+	"Projekt_chinczykApp.h"
+	"Projekt_chinczykMain.h"
+	<wx/image.h>
+
+1704990124 c:\users\igore\documents\github\projekt_programowanie\projekt_\projekt_chinczykapp.h
+	<wx/app.h>
+
+1704990124 c:\users\igore\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.cpp
+	"Projekt_chinczykMain.h"
+	<wx/msgdlg.h>
+	<wx/intl.h>
+	<wx/settings.h>
+	<wx/string.h>
+	"GameDialog.h"
+
+1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\resource.rc
+	"wx/msw/wx.rc"
+
