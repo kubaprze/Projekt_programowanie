@@ -208,32 +208,18 @@ void GameDialog::OnButton1Click(wxCommandEvent& event) // przycisk od losowania
 
 
     // tura musi sie zmienic gdy gracz ma wszytskie pionki w bazie i nie wylosuje szostki
-
-    if(gra.los != 6){
+    if((gra.gracz==0) && (gra.los != 6) && (gra.ile_w_bazie_g==4)){
+        zmien_ture();
+    } else if((gra.gracz==1) && (gra.los != 6) && (gra.ile_w_bazie_r==4)){
+        zmien_ture();
+    } else if((gra.gracz==2) && (gra.los != 6) && (gra.ile_w_bazie_y==4)){
+        zmien_ture();
+    } else if((gra.gracz==3) && (gra.los != 6) && (gra.ile_w_bazie_b==4)){
         zmien_ture();
     }
-    /*
-    if((gra.gracz==1) && (gra.los != 6) && (gra.ile_w_bazie_r==4)){
-        zmien_ture();
-    }
-    if((gra.gracz==2) && (gra.los != 6) && (gra.ile_w_bazie_y==4)){
-        zmien_ture();
-    }
-    if((gra.gracz==3) && (gra.los != 6) && (gra.ile_w_bazie_b==4)){
-        zmien_ture();
-    }
-    */
-
-    wxMessageBox(std::to_string(gra.gracz));
 
 
-
-
-
-
-
-
-
+    //wxMessageBox(std::to_string(gra.gracz));
 
 }
 
