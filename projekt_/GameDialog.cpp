@@ -219,6 +219,7 @@ void GameDialog::OnButton1Click(wxCommandEvent& event) // przycisk od losowania
     }
 
 
+
     //wxMessageBox(std::to_string(gra.gracz));
 
 }
