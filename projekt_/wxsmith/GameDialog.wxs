@@ -2,7 +2,7 @@
 <wxsmith>
 	<object class="wxDialog" name="GameDialog">
 		<centered>1</centered>
-		<size>600,495</size>
+		<size>615,495</size>
 		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
 		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
@@ -36,7 +36,7 @@
 							<rows>1</rows>
 							<object class="sizeritem">
 								<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
-									<label>Next move:</label>
+									<label>Ruch: </label>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>

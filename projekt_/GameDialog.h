@@ -56,6 +56,8 @@ class GameDialog: public wxDialog
 
         void wstaw_piona();
         void ruch(int los,int pol);
+        void zmien_ture();
+
 
         std::map<int,int> id2nr; // zamienia id pola na nr od 0 do 121
 

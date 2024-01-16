@@ -12,10 +12,6 @@ Gra::~Gra()
     //dtor
 }
 
-Gra::GetLos()
-{
-    return los;
-}
 
 
 void Gra::losuj()
