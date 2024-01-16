@@ -165,7 +165,13 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
     {
         wstaw_piona();  // wstawia piona
         gra.los=0;      // resetuje los zeby nie mozna bylo wstawic na raz wszystkich pionow
-    }else{
+    }
+    if(gra.los!=0 &&                                // jezeli los = 6 i klikamy an jeden z kwadratow bedacych baza pionkow to wywoluje funkcje wstaw piona
+       ((square_g.find(pole) == square_g.end()) &&
+        (square_r.find(pole) == square_r.end()) &&
+        (square_y.find(pole) == square_y.end()) &&
+        (square_b.find(pole) == square_b.end())))
+    {
     ruch(gra.los,pole);
     gra.los=0;
     }
@@ -301,6 +307,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                      //diskonekt pola[current_g]
                      pola[current_g[k]]->SetBitmap(pionki[0]);
                      Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     curr_g.erase(pol);
+                     curr_g.insert(valid_g[g+los]);
                      g=45;
                  }
              }
@@ -328,6 +336,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                      //diskonekt pola[current_g]
                      pola[current_r[k]]->SetBitmap(pionki[1]);
                      Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     curr_r.erase(pol);
+                     curr_r.insert(valid_r[g+los]);
                      g=45;
                  }
              }
@@ -356,6 +366,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                      //diskonekt pola[current_g]
                      pola[current_y[k]]->SetBitmap(pionki[2]);
                      Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     curr_y.erase(pol);
+                     curr_y.insert(valid_y[g+los]);
                      g=45;
                  }
              }
@@ -384,6 +396,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                      //diskonekt pola[current_g]
                      pola[current_b[k]]->SetBitmap(pionki[3]);
                      Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
+                     curr_b.erase(pol);
+                     curr_b.insert(valid_b[g+los]);
                      g=45;
                  }
              }
