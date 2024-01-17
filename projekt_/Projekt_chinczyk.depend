@@ -6051,3 +6051,168 @@
 1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\resource.rc
 	"wx/msw/wx.rc"
 
+1705405849 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.cpp
+	"Gra.h"
+	<cstdlib>
+	<ctime>
+
+1705405739 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.h
+	<map>
+	<set>
+	<iostream>
+
+1702476709 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykapp.cpp
+	"Projekt_chinczykApp.h"
+	"Projekt_chinczykMain.h"
+	<wx/image.h>
+
+1702476709 c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykapp.h
+	<wx/app.h>
+
+1704714074 c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1704714074 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.cpp
+	"Projekt_chinczykMain.h"
+	<wx/msgdlg.h>
+	<wx/intl.h>
+	<wx/settings.h>
+	<wx/string.h>
+	"GameDialog.h"
+
+1705405112 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.h
+	<map>
+	"Gra.h"
+	<wx/bmpbuttn.h>
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/statbmp.h>
+	<wx/stattext.h>
+
+1584205418 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\resource.rc
+	"wx/msw/wx.rc"
+
+1705406683 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
+	"GameDialog.h"
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/intl.h>
+	<wx/string.h>
+	<string>
+	<wx/msgdlg.h>
+
+1705405849 source:d:\igor r\projekt_\gra.cpp
+	"Gra.h"
+	<cstdlib>
+	<ctime>
+
+1705405739 d:\igor r\projekt_\gra.h
+	<map>
+	<set>
+	<iostream>
+
+1702476709 source:d:\igor r\projekt_\projekt_chinczykapp.cpp
+	"Projekt_chinczykApp.h"
+	"Projekt_chinczykMain.h"
+	<wx/image.h>
+
+1702476709 d:\igor r\projekt_\projekt_chinczykapp.h
+	<wx/app.h>
+
+1704714074 d:\igor r\projekt_\projekt_chinczykmain.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1704714074 source:d:\igor r\projekt_\projekt_chinczykmain.cpp
+	"Projekt_chinczykMain.h"
+	<wx/msgdlg.h>
+	<wx/intl.h>
+	<wx/settings.h>
+	<wx/string.h>
+	"GameDialog.h"
+
+1705503462 d:\igor r\projekt_\gamedialog.h
+	<map>
+	"Gra.h"
+	<wx/bmpbuttn.h>
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/statbmp.h>
+	<wx/stattext.h>
+
+1584205418 source:d:\igor r\projekt_\resource.rc
+	"wx/msw/wx.rc"
+
+1705503684 source:d:\igor r\projekt_\gamedialog.cpp
+	"GameDialog.h"
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/intl.h>
+	<wx/string.h>
+	<string>
+	<wx/msgdlg.h>
+
+1705405850 source:c:\users\igore\desktop\projekt_programowanie\projekt_\gra.cpp
+	"Gra.h"
+	<cstdlib>
+	<ctime>
+
+1705405740 c:\users\igore\desktop\projekt_programowanie\projekt_\gra.h
+	<map>
+	<set>
+	<iostream>
+
+1702476710 source:c:\users\igore\desktop\projekt_programowanie\projekt_\projekt_chinczykapp.cpp
+	"Projekt_chinczykApp.h"
+	"Projekt_chinczykMain.h"
+	<wx/image.h>
+
+1702476710 c:\users\igore\desktop\projekt_programowanie\projekt_\projekt_chinczykapp.h
+	<wx/app.h>
+
+1704714076 c:\users\igore\desktop\projekt_programowanie\projekt_\projekt_chinczykmain.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1704714076 source:c:\users\igore\desktop\projekt_programowanie\projekt_\projekt_chinczykmain.cpp
+	"Projekt_chinczykMain.h"
+	<wx/msgdlg.h>
+	<wx/intl.h>
+	<wx/settings.h>
+	<wx/string.h>
+	"GameDialog.h"
+
+1705531304 c:\users\igore\desktop\projekt_programowanie\projekt_\gamedialog.h
+	<map>
+	"Gra.h"
+	<wx/bmpbuttn.h>
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/statbmp.h>
+	<wx/stattext.h>
+
+1584205418 source:c:\users\igore\desktop\projekt_programowanie\projekt_\resource.rc
+	"wx/msw/wx.rc"
+
+1705531284 source:c:\users\igore\desktop\projekt_programowanie\projekt_\gamedialog.cpp
+	"GameDialog.h"
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/intl.h>
+	<wx/string.h>
+	<string>
+	<wx/msgdlg.h>
+

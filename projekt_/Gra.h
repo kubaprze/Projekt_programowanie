@@ -27,9 +27,10 @@ class Gra
         int ile_skonczylo_y = 0;
         int ile_skonczylo_g = 0;
         int ile_skonczylo_b = 0;
+
         void losuj();
 
-        int GetLos();
+
         int los = 0;
 
 
