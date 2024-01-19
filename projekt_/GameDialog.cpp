@@ -244,11 +244,10 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
 {
     if(gra.gracz == 0){
             //if(gra.ile_w_bazie_g!=0){
-        pola[44]->SetBitmap(pionki[0]);
         pola[home_g[gra.ile_w_bazie_g-1]]->SetBitmap(rysunki[0]);
         current_g[gra.ile_w_bazie_g-1] = 44;
         gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
-                    int ile2=ile_na_polu(44);
+                    int ile2=ile_na_pol(44);
                     if(ile2==1){
                     pola[44]->SetBitmap(pionki[0]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
                     Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -266,11 +265,10 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         //tutaj diskonekt pola w bazie zeby nie dalo sie go kliknac
     }//}
     if(gra.gracz == 1){
-        pola[6]->SetBitmap(pionki[1]);
         pola[home_r[gra.ile_w_bazie_r-1]]->SetBitmap(rysunki[1]);
         current_r[gra.ile_w_bazie_r-1] = 6;
         gra.ile_w_bazie_r = gra.ile_w_bazie_r-1;
-                    int ile2=ile_na_polu(6);
+                    int ile2=ile_na_pol(6);
                     if(ile2==1){
                     pola[6]->SetBitmap(pionki[1]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
                     Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -287,11 +285,10 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         curr_r.insert(6);
     }
     if(gra.gracz == 2){
-        pola[76]->SetBitmap(pionki[2]);
         pola[home_y[gra.ile_w_bazie_y-1]]->SetBitmap(rysunki[2]);
         current_y[gra.ile_w_bazie_y-1] = 76;
         gra.ile_w_bazie_y = gra.ile_w_bazie_y-1;
-                    int ile2=ile_na_polu(76);
+                    int ile2=ile_na_pol(76);
                     if(ile2==1){
                     pola[76]->SetBitmap(pionki[2]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
                     Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -308,11 +305,10 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         curr_y.insert(76);
     }
     if(gra.gracz == 3){
-        pola[114]->SetBitmap(pionki[3]);
         pola[home_b[gra.ile_w_bazie_b-1]]->SetBitmap(rysunki[3]);
         current_b[gra.ile_w_bazie_b-1] = 114;
         gra.ile_w_bazie_b = gra.ile_w_bazie_b-1;
-                    int ile2=ile_na_polu(114);
+                    int ile2=ile_na_pol(114);
                     if(ile2==1){
                     pola[114]->SetBitmap(pionki[3]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
                     Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -328,9 +324,30 @@ void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli arg
         curr_b.erase(home_b[gra.ile_w_bazie_b-1]); // usuwa id z bazy
         curr_b.insert(114); // dodaje id pole startowego
     }
-
+}
+int GameDialog::ile_na_pol(int p)
+{
+int k=0;
+    for(int i=0;i<4;i++){
+        if(current_g[i]==p)
+            k++;
+    }
+    for(int i=0;i<4;i++){
+        if(current_r[i]==p)
+            k++;
+    }
+    for(int i=0;i<4;i++){
+        if(current_y[i]==p)
+            k++;
+    }
+    for(int i=0;i<4;i++){
+        if(current_b[i]==p)
+            k++;
+    }
+    return k;
 
 }
+
 bool GameDialog::sprawdz(int x,int p)
 {
     if(x==0){
@@ -348,7 +365,7 @@ bool GameDialog::sprawdz(int x,int p)
 }
 void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
 {
-    int ile=ile_na_polu(pol);
+    int ile=ile_na_pol(pol);
     if(ile==1){
          if(pol==6){                                                // sprawdza czy nie jest to kolorowe pole jak tak to ustawia bitmape na ten kolor
            pola[6]->SetBitmap(rysunki[1]);
@@ -374,6 +391,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
             pola[pol]->SetBitmap(pionki2[0]);
             if(ile==4)
             pola[pol]->SetBitmap(pionki3[0]);
+    if(gra.gracz == 0){
        for(int i=0;i<4;i++)
         {
             if(pol==current_g[i])
@@ -391,7 +409,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                 }else{
                      current_g[k]=valid_g[g+los];
 //                     zbicie(current_g[k]);
-                     int ile2=ile_na_polu(current_g[k]);
+                     int ile2=ile_na_pol(current_g[k]);
                     if(ile2==1){
                     pola[current_g[k]]->SetBitmap(pionki[0]);
                     Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -404,12 +422,14 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                     if(ile2==4){
                     pola[current_g[k]]->SetBitmap(pionki4[0]);
                     Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                     curr_g.erase(pol);
+                     auto it = curr_g.find(pol);
+                     curr_g.erase(it);
                      curr_g.insert(valid_g[g+los]);
                      g=45;
                 }
             }
         }
+    }
     }
     if(gra.gracz == 1){
             if(ile==2)
@@ -436,7 +456,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                 }else{
                      current_r[k]=valid_r[g+los];
                      //diskonekt pola[current_g]
-                     int ile2=ile_na_polu(current_r[k]);
+                     int ile2=ile_na_pol(current_r[k]);
                      if(ile2==1){
                      pola[current_r[k]]->SetBitmap(pionki[1]);
                      Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -449,7 +469,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                      if(ile2==4){
                      pola[current_r[k]]->SetBitmap(pionki4[1]);
                      Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                     curr_r.erase(pol);
+                     auto it = curr_r.find(pol);
+                     curr_r.erase(it);
                      curr_r.insert(valid_r[g+los]);
                      g=45;
                  }
@@ -481,7 +502,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                     g=45;
                 }else{
                     current_y[k]=valid_y[g+los];
-                    int ile2=ile_na_polu(current_y[k]);
+                    int ile2=ile_na_pol(current_y[k]);
                     if(ile2==1){
                     pola[current_y[k]]->SetBitmap(pionki[2]);
                     Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -494,8 +515,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                     if(ile2==4){
                     pola[current_y[k]]->SetBitmap(pionki4[2]);
                     Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    //diskonekt pola[current_g]
-                    curr_y.erase(pol);
+                    auto it = curr_y.find(pol);
+                    curr_y.erase(it);
                     curr_y.insert(valid_y[g+los]);
                     g=45;
                 }
@@ -510,6 +531,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
             pola[pol]->SetBitmap(pionki2[3]);
             if(ile==4)
             pola[pol]->SetBitmap(pionki3[3]);
+
        for(int i=0;i<4;i++)
         {
             if(pol==current_b[i]){
@@ -529,7 +551,7 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                 else{
                     current_b[k]=valid_b[g+los];
                     //diskonekt pola[current_g]
-                    int ile2=ile_na_polu(current_b[k]);
+                    int ile2=ile_na_pol(current_b[k]);
                     if(ile2==1){
                     pola[current_b[k]]->SetBitmap(pionki[3]);
                     Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
@@ -542,7 +564,8 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                     if(ile2==4){
                     pola[current_b[k]]->SetBitmap(pionki4[3]);
                     Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    curr_b.erase(pol);
+                    auto it = curr_b.find(pol);
+                    curr_b.erase(it);
                     curr_b.insert(valid_b[g+los]);
                     g=45;
                 }
@@ -550,43 +573,6 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
          }
     }
 }
-/*void GameDialog::zbicie(int p)
-{
-    if(gra.gracz==0)
-    {
-        for(int i=0;i<4;i++){
-            if(current_b[i]==p){
-                current_b[i]=p //przypisuje jedną wartość z squere_b która nie znajduje się w curr_b
-            }
-        }
-    }
-}
-*/
-
-
-int GameDialog::ile_na_polu(int p)
-{
-    int k=0;
-    for(int i=0;i<4;i++){
-        if(current_g[i]==p)
-            k++;
-    }
-    for(int i=0;i<4;i++){
-        if(current_r[i]==p)
-            k++;
-    }
-    for(int i=0;i<4;i++){
-        if(current_y[i]==p)
-            k++;
-    }
-    for(int i=0;i<4;i++){
-        if(current_b[i]==p)
-            k++;
-    }
-    return k;
-
-}
-
 /*
 int ile = ile_na_polu(pol);
     if(ile==0){
@@ -635,8 +621,8 @@ int ile = ile_na_polu(pol);
 
     }
 
-}*/
-
+}
+*/
 
 
 
