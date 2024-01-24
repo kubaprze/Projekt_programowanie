@@ -199,7 +199,7 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
 
 
 
-        //wxMessageBox(std::to_string(id2nr[event.GetId()]));  //test czy pole jest polaczone z fukncja ObBitmapButton1click
+
    // } else
     } else {wxMessageBox("To nie twoj pionek!!"); }
 }
@@ -212,6 +212,14 @@ void GameDialog::OnInit(wxInitDialogEvent& event)
 void GameDialog::zmien_ture()
 {
     gra.gracz = (gra.gracz+1) % 4;
+    if((gra.gracz==0) && (gra.ile_skonczylo_g==4))
+        gra.gracz = (gra.gracz+1) % 4;
+    if((gra.gracz==1) && (gra.ile_skonczylo_r==4))
+        gra.gracz = (gra.gracz+1) % 4;
+    if((gra.gracz==2) && (gra.ile_skonczylo_y==4))
+        gra.gracz = (gra.gracz+1) % 4;
+    if((gra.gracz==3) && (gra.ile_skonczylo_b==4))
+        gra.gracz = (gra.gracz+1) % 4;
     StaticBitmap2->SetBitmap(rysunki[gra.gracz]);
 }
 
