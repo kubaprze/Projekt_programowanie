@@ -1,2 +1,2 @@
-# Projekt_programowanie
-chińczyk
+# Projekt programowanie
+## Chińczyk
