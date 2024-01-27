@@ -58,6 +58,7 @@ class GameDialog: public wxDialog
         void ruch(int los,int pol);
         void zmien_ture();
         int ile_na_pol(int p);
+        void zbij(int pole);
         //void ruszaj(int pole);
 
 

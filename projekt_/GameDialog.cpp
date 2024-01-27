@@ -172,8 +172,11 @@ GameDialog::~GameDialog()
 void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
 {
     int pole = id2nr[event.GetId()]; // nr pola na ktore klikamy
-    if(sprawdz(gra.gracz,pole)){                                             //tu ma sprawdzac czy pole na ktore kliknie zawiera sie w current_ w zaleznosci od gracza
-        if(gra.los==6 &&                                // jezeli los = 6 i klikamy an jeden z kwadratow bedacych baza pionkow to wywoluje funkcje wstaw piona
+
+    //sprawdza czy pole na ktore kliknie zawiera sie w current_ w zaleznosci od gracza
+    if(sprawdz(gra.gracz,pole)){
+        // jezeli los = 6 i klikamy an jeden z kwadratow bedacych baza pionkow to wywoluje funkcje wstaw piona
+        if(gra.los==6 &&
             ((square_g.find(pole) != square_g.end()) ||
             (square_r.find(pole) != square_r.end()) ||
             (square_y.find(pole) != square_y.end()) ||
@@ -192,16 +195,12 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
             if(gra.los != 6){
                 zmien_ture();  // tura sie zmienia gdy nie wylosuje szoski i zrobi ruch
             }
-            gra.los=0;
+            //gra.los=0;
         }
 
 
 
-
-
-
-   // } else
-    } else {wxMessageBox("To nie twoj pionek!!"); }
+    } else {wxMessageBox("Nie mozesz tu klikac!!"); }
 }
 
 
@@ -212,13 +211,13 @@ void GameDialog::OnInit(wxInitDialogEvent& event)
 void GameDialog::zmien_ture()
 {
     gra.gracz = (gra.gracz+1) % 4;
-    if((gra.gracz==0) && (gra.ile_skonczylo_g==4))
+    if((gra.gracz==0)&&(gra.ile_skonczylo_g==4))
         gra.gracz = (gra.gracz+1) % 4;
-    if((gra.gracz==1) && (gra.ile_skonczylo_r==4))
+    if((gra.gracz==1)&&(gra.ile_skonczylo_r==4))
         gra.gracz = (gra.gracz+1) % 4;
-    if((gra.gracz==2) && (gra.ile_skonczylo_y==4))
+    if((gra.gracz==2)&&(gra.ile_skonczylo_y==4))
         gra.gracz = (gra.gracz+1) % 4;
-    if((gra.gracz==3) && (gra.ile_skonczylo_b==4))
+    if((gra.gracz==3)&&(gra.ile_skonczylo_b==4))
         gra.gracz = (gra.gracz+1) % 4;
     StaticBitmap2->SetBitmap(rysunki[gra.gracz]);
 }
@@ -231,105 +230,111 @@ void GameDialog::OnButton1Click(wxCommandEvent& event) // przycisk od losowania
     StaticBitmap1->SetBitmap(kostka[l-1]);
 
 
-    // tura musi sie zmienic gdy gracz ma wszytskie pionki w bazie i nie wylosuje szostki
+    // tura sie zmienia gdy gracz ma wszytskie pionki w bazie i nie wylosuje szostki
     if((gra.gracz==0) && (gra.los != 6) && (gra.ile_w_bazie_g==4)){
         zmien_ture();
+        gra.los = 0;
     } else if((gra.gracz==1) && (gra.los != 6) && (gra.ile_w_bazie_r==4)){
         zmien_ture();
+        gra.los = 0;
     } else if((gra.gracz==2) && (gra.los != 6) && (gra.ile_w_bazie_y==4)){
         zmien_ture();
+        gra.los = 0;
     } else if((gra.gracz==3) && (gra.los != 6) && (gra.ile_w_bazie_b==4)){
         zmien_ture();
+        gra.los = 0;
     }
-
-
-
-    //wxMessageBox(std::to_string(gra.gracz));
-
 }
 
 void GameDialog::wstaw_piona()// tutaj bedizemi wstawiac rzut kosttką czyli argument los
 {
     if(gra.gracz == 0){
-            //if(gra.ile_w_bazie_g!=0){
         pola[home_g[gra.ile_w_bazie_g-1]]->SetBitmap(rysunki[0]);
         current_g[gra.ile_w_bazie_g-1] = 44;
         gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
-                    int ile2=ile_na_pol(44);
-                    if(ile2==1){
-                    pola[44]->SetBitmap(pionki[0]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
-                    Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==2){
-                    pola[44]->SetBitmap(pionki2[0]);
-                    Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==3){
-                    pola[44]->SetBitmap(pionki3[0]);
-                    Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==4){
-                    pola[44]->SetBitmap(pionki4[0]);
-                    Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-        curr_g.erase(home_g[gra.ile_w_bazie_g-1]);
+        zbij(44);
+        int ile2=ile_na_pol(44);
+            if(ile2==1){
+            pola[44]->SetBitmap(pionki[0]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
+            Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==2){
+            pola[44]->SetBitmap(pionki2[0]);
+            Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==3){
+            pola[44]->SetBitmap(pionki3[0]);
+            Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==4){
+            pola[44]->SetBitmap(pionki4[0]);
+            Connect(pola[44]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        auto it = home_g[gra.ile_w_bazie_g];
+        curr_g.erase(it);
         curr_g.insert(44);
-        //tutaj diskonekt pola w bazie zeby nie dalo sie go kliknac
-    }//}
+
+    }
     if(gra.gracz == 1){
         pola[home_r[gra.ile_w_bazie_r-1]]->SetBitmap(rysunki[1]);
         current_r[gra.ile_w_bazie_r-1] = 6;
         gra.ile_w_bazie_r = gra.ile_w_bazie_r-1;
-                    int ile2=ile_na_pol(6);
-                    if(ile2==1){
-                    pola[6]->SetBitmap(pionki[1]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
-                    Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==2){
-                    pola[6]->SetBitmap(pionki2[1]);
-                    Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==3){
-                    pola[6]->SetBitmap(pionki3[1]);
-                    Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==4){
-                    pola[6]->SetBitmap(pionki4[1]);
-                    Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-        curr_r.erase(home_r[gra.ile_w_bazie_r-1]);
+        zbij(6);
+        int ile2=ile_na_pol(6);
+        if(ile2==1){
+            pola[6]->SetBitmap(pionki[1]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
+            Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==2){
+            pola[6]->SetBitmap(pionki2[1]);
+            Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==3){
+            pola[6]->SetBitmap(pionki3[1]);
+            Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==4){
+            pola[6]->SetBitmap(pionki4[1]);
+            Connect(pola[6]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        auto it = home_r[gra.ile_w_bazie_r];
+        curr_r.erase(it);
         curr_r.insert(6);
     }
     if(gra.gracz == 2){
         pola[home_y[gra.ile_w_bazie_y-1]]->SetBitmap(rysunki[2]);
         current_y[gra.ile_w_bazie_y-1] = 76;
         gra.ile_w_bazie_y = gra.ile_w_bazie_y-1;
-                    int ile2=ile_na_pol(76);
-                    if(ile2==1){
-                    pola[76]->SetBitmap(pionki[2]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
-                    Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==2){
-                    pola[76]->SetBitmap(pionki2[2]);
-                    Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==3){
-                    pola[76]->SetBitmap(pionki3[2]);
-                    Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==4){
-                    pola[76]->SetBitmap(pionki4[2]);
-                    Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-        curr_y.erase(home_y[gra.ile_w_bazie_y-1]);
+        zbij(76);
+        int ile2=ile_na_pol(76);
+        if(ile2==1){
+            pola[76]->SetBitmap(pionki[2]);
+            Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==2){
+            pola[76]->SetBitmap(pionki2[2]);
+            Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==3){
+            pola[76]->SetBitmap(pionki3[2]);
+            Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==4){
+            pola[76]->SetBitmap(pionki4[2]);
+            Connect(pola[76]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        auto it = home_y[gra.ile_w_bazie_y];
+        curr_y.erase(it);
         curr_y.insert(76);
     }
     if(gra.gracz == 3){
         pola[home_b[gra.ile_w_bazie_b-1]]->SetBitmap(rysunki[3]);
         current_b[gra.ile_w_bazie_b-1] = 114;
         gra.ile_w_bazie_b = gra.ile_w_bazie_b-1;
-                    int ile2=ile_na_pol(114);
-                    if(ile2==1){
-                    pola[114]->SetBitmap(pionki[3]); //A CO W SYTUACJI GDY CHCE WYSTAWIC PIONA NA KTÓRYM STOI PRZECIWNIK??
-                    Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==2){
-                    pola[114]->SetBitmap(pionki2[3]);
-                    Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==3){
-                    pola[114]->SetBitmap(pionki3[3]);
-                    Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                    if(ile2==4){
-                    pola[114]->SetBitmap(pionki4[3]);
-                    Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-        curr_b.erase(home_b[gra.ile_w_bazie_b-1]); // usuwa id z bazy
+        zbij(114);
+        int ile2=ile_na_pol(114);
+        if(ile2==1){
+            pola[114]->SetBitmap(pionki[3]);
+            Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==2){
+            pola[114]->SetBitmap(pionki2[3]);
+            Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==3){
+            pola[114]->SetBitmap(pionki3[3]);
+            Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        if(ile2==4){
+            pola[114]->SetBitmap(pionki4[3]);
+            Connect(pola[114]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+        auto it = home_b[gra.ile_w_bazie_b];
+        curr_b.erase(it); // usuwa id z bazy
         curr_b.insert(114); // dodaje id pole startowego
     }
 }
@@ -353,7 +358,6 @@ int k=0;
             k++;
     }
     return k;
-
 }
 
 bool GameDialog::sprawdz(int x,int p)
@@ -374,8 +378,10 @@ bool GameDialog::sprawdz(int x,int p)
 void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
 {
     int ile=ile_na_pol(pol);
+
+    // sprawdza czy nie jest to kolorowe pole jak tak to ustawia bitmape na ten kolor
     if(ile==1){
-         if(pol==6){                                                // sprawdza czy nie jest to kolorowe pole jak tak to ustawia bitmape na ten kolor
+         if(pol==6){
            pola[6]->SetBitmap(rysunki[1]);
         }
         else if(pol==76){
@@ -393,90 +399,89 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
     }
     int k;
     if(gra.gracz == 0){
-            if(ile==2)
+        if(ile==2)
             pola[pol]->SetBitmap(pionki[0]);
-            if(ile==3)
+        if(ile==3)
             pola[pol]->SetBitmap(pionki2[0]);
-            if(ile==4)
+        if(ile==4)
             pola[pol]->SetBitmap(pionki3[0]);
-    if(gra.gracz == 0){
        for(int i=0;i<4;i++)
         {
             if(pol==current_g[i])
                 k=i;
+                i=4;
         }
         for(int g=0;g<45;g++)
         {
             if(current_g[k]==valid_g[g]){
                 if(g+los>(43-gra.ile_skonczylo_g)){
-                        //diskonet pola[current_g]
-                        pola[43-gra.ile_skonczylo_g]->SetBitmap(pionki[0]);
-                        current_g[k]=valid_g[43-gra.ile_skonczylo_g];
-                        gra.ile_skonczylo_g=gra.ile_skonczylo_g+1;
-                        g=45;
-                }else{
-                     current_g[k]=valid_g[g+los];
-//                     zbicie(current_g[k]);
-                     int ile2=ile_na_pol(current_g[k]);
+                    pola[43-gra.ile_skonczylo_g]->SetBitmap(pionki[0]);
+                    current_g[k]=valid_g[43-gra.ile_skonczylo_g];
+                    gra.ile_skonczylo_g=gra.ile_skonczylo_g+1;
+                    g=45;
+                }
+                else{
+                    current_g[k]=valid_g[g+los];
+                    zbij(current_g[k]);
+                    int ile2=ile_na_pol(current_g[k]);
                     if(ile2==1){
-                    pola[current_g[k]]->SetBitmap(pionki[0]);
-                    Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_g[k]]->SetBitmap(pionki[0]);
+                        Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==2){
-                    pola[current_g[k]]->SetBitmap(pionki2[0]);
-                    Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_g[k]]->SetBitmap(pionki2[0]);
+                        Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==3){
-                    pola[current_g[k]]->SetBitmap(pionki3[0]);
-                    Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_g[k]]->SetBitmap(pionki3[0]);
+                        Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==4){
-                    pola[current_g[k]]->SetBitmap(pionki4[0]);
-                    Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
-                     auto it = curr_g.find(pol);
-                     curr_g.erase(it);
-                     curr_g.insert(valid_g[g+los]);
-                     g=45;
+                        pola[current_g[k]]->SetBitmap(pionki4[0]);
+                        Connect(pola[current_g[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                    auto it = curr_g.find(pol);
+                    curr_g.erase(it);
+                    curr_g.insert(valid_g[g+los]);
+                    g=45;
                 }
             }
         }
     }
-    }
+
     if(gra.gracz == 1){
-            if(ile==2)
+        if(ile==2)
             pola[pol]->SetBitmap(pionki[1]);
-            if(ile==3)
+        if(ile==3)
             pola[pol]->SetBitmap(pionki2[1]);
-            if(ile==4)
+        if(ile==4)
             pola[pol]->SetBitmap(pionki3[1]);
-       for(int i=0;i<4;i++)
-        {
+       for(int i=0;i<4;i++){
             if(pol==current_r[i]){
                 k=i;
+                i=4;
             }
         }
         for(int g=0;g<45;g++)
         {
             if(current_r[k]==valid_r[g]){
                 if(g+los>(43-gra.ile_skonczylo_r)){
-                    //diskonet pola[current_g]
                     pola[43-gra.ile_skonczylo_r]->SetBitmap(pionki[1]);
                     current_r[k]=valid_r[43-gra.ile_skonczylo_r];
                     gra.ile_skonczylo_r=gra.ile_skonczylo_r+1;
                     g=45;
                 }else{
                      current_r[k]=valid_r[g+los];
-                     //diskonekt pola[current_g]
+                     zbij(current_r[k]);
                      int ile2=ile_na_pol(current_r[k]);
                      if(ile2==1){
-                     pola[current_r[k]]->SetBitmap(pionki[1]);
-                     Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_r[k]]->SetBitmap(pionki[1]);
+                        Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                      if(ile2==2){
-                     pola[current_r[k]]->SetBitmap(pionki2[1]);
-                     Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_r[k]]->SetBitmap(pionki2[1]);
+                        Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                      if(ile2==3){
-                     pola[current_r[k]]->SetBitmap(pionki3[1]);
-                     Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_r[k]]->SetBitmap(pionki3[1]);
+                        Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                      if(ile2==4){
-                     pola[current_r[k]]->SetBitmap(pionki4[1]);
-                     Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_r[k]]->SetBitmap(pionki4[1]);
+                        Connect(pola[current_r[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                      auto it = curr_r.find(pol);
                      curr_r.erase(it);
                      curr_r.insert(valid_r[g+los]);
@@ -487,16 +492,16 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
     }
 
     if(gra.gracz == 2){
-            if(ile==2)
+        if(ile==2)
             pola[pol]->SetBitmap(pionki[2]);
-            if(ile==3)
+        if(ile==3)
             pola[pol]->SetBitmap(pionki2[2]);
-            if(ile==4)
+        if(ile==4)
             pola[pol]->SetBitmap(pionki3[3]);
-       for(int i=0;i<4;i++)
-        {
+       for(int i=0;i<4;i++){
             if(pol==current_y[i]){
                 k=i;
+                i=4;
             }
         }
         for(int g=0;g<45;g++)
@@ -508,79 +513,234 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                     current_y[k]=valid_y[43-gra.ile_skonczylo_y];
                     gra.ile_skonczylo_y=gra.ile_skonczylo_y+1;
                     g=45;
-                }else{
+                }
+                else{
                     current_y[k]=valid_y[g+los];
+                    zbij(current_y[k]);
                     int ile2=ile_na_pol(current_y[k]);
                     if(ile2==1){
-                    pola[current_y[k]]->SetBitmap(pionki[2]);
-                    Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_y[k]]->SetBitmap(pionki[2]);
+                        Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==2){
-                    pola[current_y[k]]->SetBitmap(pionki2[2]);
-                    Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_y[k]]->SetBitmap(pionki2[2]);
+                        Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==3){
-                    pola[current_y[k]]->SetBitmap(pionki3[2]);
-                    Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_y[k]]->SetBitmap(pionki3[2]);
+                        Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==4){
-                    pola[current_y[k]]->SetBitmap(pionki4[2]);
-                    Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_y[k]]->SetBitmap(pionki4[2]);
+                        Connect(pola[current_y[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     auto it = curr_y.find(pol);
                     curr_y.erase(it);
                     curr_y.insert(valid_y[g+los]);
                     g=45;
                 }
-             }
-         }
+            }
+        }
     }
 
     if(gra.gracz == 3){
-            if(ile==2)
+        if(ile==2)
             pola[pol]->SetBitmap(pionki[3]);
-            if(ile==3)
+        if(ile==3)
             pola[pol]->SetBitmap(pionki2[3]);
-            if(ile==4)
+        if(ile==4)
             pola[pol]->SetBitmap(pionki3[3]);
 
        for(int i=0;i<4;i++)
         {
             if(pol==current_b[i]){
                 k=i;
+                i=4;
             }
         }
         for(int g=0;g<45;g++)
         {
             if(current_b[k]==valid_b[g]){
                 if(g+los>(43-gra.ile_skonczylo_b)){
-                        //diskonet pola[current_g]
-                        pola[43-gra.ile_skonczylo_b]->SetBitmap(pionki[3]);
-                        current_b[k]=valid_b[43-gra.ile_skonczylo_b];
-                        gra.ile_skonczylo_b=gra.ile_skonczylo_b+1;
-                        g=45;
+                    pola[43-gra.ile_skonczylo_b]->SetBitmap(pionki[3]);
+                    current_b[k]=valid_b[43-gra.ile_skonczylo_b];
+                    gra.ile_skonczylo_b=gra.ile_skonczylo_b+1;
+                    g=45;
                 }
                 else{
                     current_b[k]=valid_b[g+los];
-                    //diskonekt pola[current_g]
+                    zbij(current_b[k]);
                     int ile2=ile_na_pol(current_b[k]);
                     if(ile2==1){
-                    pola[current_b[k]]->SetBitmap(pionki[3]);
-                    Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_b[k]]->SetBitmap(pionki[3]);
+                        Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==2){
-                    pola[current_b[k]]->SetBitmap(pionki2[3]);
-                    Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_b[k]]->SetBitmap(pionki2[3]);
+                        Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==3){
-                    pola[current_b[k]]->SetBitmap(pionki3[3]);
-                    Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_b[k]]->SetBitmap(pionki3[3]);
+                        Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     if(ile2==4){
-                    pola[current_b[k]]->SetBitmap(pionki4[3]);
-                    Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
+                        pola[current_b[k]]->SetBitmap(pionki4[3]);
+                        Connect(pola[current_b[k]]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);}
                     auto it = curr_b.find(pol);
                     curr_b.erase(it);
                     curr_b.insert(valid_b[g+los]);
                     g=45;
                 }
-             }
-         }
+            }
+        }
     }
 }
+
+void GameDialog::zbij(int p)
+{
+    if(gra.gracz==0)
+    {
+        for(int i=0;i<4;i++){
+            if(current_b[i]==p){
+                gra.ile_w_bazie_b= gra.ile_w_bazie_b+1;
+                current_b[i]=home_b[gra.ile_w_bazie_b];
+                pola[current_b[i]]->SetBitmap(pionki[3]);
+                auto it = curr_b.find(p);
+                curr_b.erase(it);
+                curr_b.insert(current_b[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_y[i]==p){
+                gra.ile_w_bazie_y= gra.ile_w_bazie_y+1;
+                current_y[i]=home_y[gra.ile_w_bazie_y];
+                pola[current_y[i]]->SetBitmap(pionki[2]);
+                auto it = curr_y.find(p);
+                curr_y.erase(it);
+                curr_y.insert(current_y[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_r[i]==p){
+                gra.ile_w_bazie_r= gra.ile_w_bazie_r+1;
+                current_r[i]=home_r[gra.ile_w_bazie_r];
+                pola[current_r[i]]->SetBitmap(pionki[1]);
+                auto it = curr_r.find(p);
+                curr_r.erase(it);
+                curr_r.insert(current_r[i]);
+            }
+        }
+    }
+    if(gra.gracz==1)
+    {
+        for(int i=0;i<4;i++){
+            if(current_b[i]==p){
+                gra.ile_w_bazie_b= gra.ile_w_bazie_b+1;
+                current_b[i]=home_b[gra.ile_w_bazie_b];
+                pola[current_b[i]]->SetBitmap(pionki[3]);
+                auto it = curr_b.find(p);
+                curr_b.erase(it);
+                curr_b.insert(current_b[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_y[i]==p){
+                gra.ile_w_bazie_y= gra.ile_w_bazie_y+1;
+                current_y[i]=home_y[gra.ile_w_bazie_y];
+                pola[current_y[i]]->SetBitmap(pionki[2]);
+                auto it = curr_y.find(p);
+                curr_y.erase(it);
+                curr_y.insert(current_y[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_g[i]==p){
+                gra.ile_w_bazie_g= gra.ile_w_bazie_g+1;
+                current_g[i]=home_g[gra.ile_w_bazie_g];
+                pola[current_g[i]]->SetBitmap(pionki[0]);
+                auto it = curr_g.find(p);
+                curr_g.erase(it);
+                curr_g.insert(current_g[i]);
+            }
+        }
+    }
+    if(gra.gracz==2)
+    {
+        for(int i=0;i<4;i++){
+            if(current_b[i]==p){
+                gra.ile_w_bazie_b= gra.ile_w_bazie_b+1;
+                current_b[i]=home_b[gra.ile_w_bazie_b];
+                pola[current_b[i]]->SetBitmap(pionki[3]);
+                auto it = curr_b.find(p);
+                curr_b.erase(it);
+                curr_b.insert(current_b[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_g[i]==p){
+                gra.ile_w_bazie_g= gra.ile_w_bazie_g+1;
+                current_g[i]=home_g[gra.ile_w_bazie_g];
+                pola[current_g[i]]->SetBitmap(pionki[0]);
+                auto it = curr_g.find(p);
+                curr_g.erase(it);
+                curr_g.insert(current_g[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_r[i]==p){
+                gra.ile_w_bazie_r= gra.ile_w_bazie_r+1;
+                current_r[i]=home_r[gra.ile_w_bazie_r];
+                pola[current_r[i]]->SetBitmap(pionki[1]);
+                auto it = curr_r.find(p);
+                curr_r.erase(it);
+                curr_r.insert(current_r[i]);
+            }
+        }
+    }
+    if(gra.gracz==3)
+    {
+        for(int i=0;i<4;i++){
+            if(current_g[i]==p){
+                gra.ile_w_bazie_g= gra.ile_w_bazie_g+1;
+                current_g[i]=home_g[gra.ile_w_bazie_g];
+                pola[current_g[i]]->SetBitmap(pionki[0]);
+                auto it = curr_g.find(p);
+                curr_g.erase(it);
+                curr_g.insert(current_g[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_y[i]==p){
+                gra.ile_w_bazie_y= gra.ile_w_bazie_y+1;
+                current_y[i]=home_y[gra.ile_w_bazie_y];
+                pola[current_y[i]]->SetBitmap(pionki[2]);
+                auto it = curr_y.find(p);
+                curr_y.erase(it);
+                curr_y.insert(current_y[i]);
+            }
+        }
+        for(int i=0;i<4;i++){
+            if(current_r[i]==p){
+                gra.ile_w_bazie_r= gra.ile_w_bazie_r+1;
+                current_r[i]=home_r[gra.ile_w_bazie_r];
+                pola[current_r[i]]->SetBitmap(pionki[1]);
+                auto it = curr_r.find(p);
+                curr_r.erase(it);
+                curr_r.insert(current_r[i]);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 int ile = ile_na_polu(pol);
     if(ile==0){
