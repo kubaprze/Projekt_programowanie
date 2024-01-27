@@ -381,16 +381,16 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
 
     // sprawdza czy nie jest to kolorowe pole jak tak to ustawia bitmape na ten kolor
     if(ile==1){
-         if(pol==6){
+         if(pol==6 || pol==16 || pol==27 || pol==38 || pol==49){
            pola[6]->SetBitmap(rysunki[1]);
         }
-        else if(pol==76){
+        else if(pol==76 || pol==61 || pol==62 || pol==63 || pol==64){
             pola[76]->SetBitmap(rysunki[2]);
         }
-        else if(pol==114){
+        else if(pol==114 || pol==71 || pol==82 || pol==93 || pol==104){
             pola[114]->SetBitmap(rysunki[3]);
         }
-        else if(pol==44){
+        else if(pol==44 || pol==56 || pol==57 || pol==58 || pol==59){
             pola[44]->SetBitmap(rysunki[0]);
         }
         else{
