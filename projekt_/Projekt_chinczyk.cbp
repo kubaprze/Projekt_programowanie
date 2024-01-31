@@ -71,11 +71,14 @@
 		<Unit filename="Projekt_chinczykApp.h" />
 		<Unit filename="Projekt_chinczykMain.cpp" />
 		<Unit filename="Projekt_chinczykMain.h" />
+		<Unit filename="Zasady.cpp" />
+		<Unit filename="Zasady.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Unit filename="wxsmith/GameDialog.wxs" />
 		<Unit filename="wxsmith/Projekt_chinczykdialog.wxs" />
+		<Unit filename="wxsmith/Zasady.wxs" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
@@ -83,6 +86,7 @@
 				<resources>
 					<wxDialog wxs="wxsmith/Projekt_chinczykdialog.wxs" src="Projekt_chinczykMain.cpp" hdr="Projekt_chinczykMain.h" fwddecl="0" i18n="1" name="Projekt_chinczykDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/GameDialog.wxs" src="GameDialog.cpp" hdr="GameDialog.h" fwddecl="0" i18n="1" name="GameDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/Zasady.wxs" src="Zasady.cpp" hdr="Zasady.h" fwddecl="0" i18n="1" name="Zasady" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

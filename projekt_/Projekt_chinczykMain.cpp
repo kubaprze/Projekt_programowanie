@@ -11,6 +11,8 @@
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(Projekt_chinczykDialog)
+#include <wx/bitmap.h>
+#include <wx/image.h>
 #include <wx/intl.h>
 #include <wx/settings.h>
 #include <wx/string.h>
@@ -45,9 +47,8 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(Projekt_chinczykDialog)
-const long Projekt_chinczykDialog::ID_STATICTEXT1 = wxNewId();
-const long Projekt_chinczykDialog::ID_STATICTEXT2 = wxNewId();
-const long Projekt_chinczykDialog::ID_CHOICE1 = wxNewId();
+const long Projekt_chinczykDialog::ID_STATICBITMAP1 = wxNewId();
+const long Projekt_chinczykDialog::ID_BUTTON2 = wxNewId();
 const long Projekt_chinczykDialog::ID_BUTTON1 = wxNewId();
 //*)
 
@@ -62,33 +63,29 @@ Projekt_chinczykDialog::Projekt_chinczykDialog(wxWindow* parent,wxWindowID id)
     wxBoxSizer* BoxSizer1;
     wxFlexGridSizer* FlexGridSizer1;
 
-    Create(parent, wxID_ANY, _("Chińczyk"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxMINIMIZE_BOX, _T("wxID_ANY"));
-    SetClientSize(wxSize(220,100));
-    SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    Create(parent, wxID_ANY, _("Chińczyk"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX, _T("wxID_ANY"));
+    SetClientSize(wxSize(470,450));
+    SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENU));
     FlexGridSizer1 = new wxFlexGridSizer(3, 1, 0, 0);
     FlexGridSizer1->AddGrowableCol(0);
     FlexGridSizer1->AddGrowableRow(0);
-    StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("Chińczyk"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    FlexGridSizer1->Add(StaticText1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBitmap1 = new wxStaticBitmap(this, ID_STATICBITMAP1, wxBitmap(wxImage(_T("chinczyk-tytul.png"))), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+    FlexGridSizer1->Add(StaticBitmap1, 1, wxALL, 5);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    StaticText2 = new wxStaticText(this, ID_STATICTEXT2, _("Ile graczy\?"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    BoxSizer1->Add(StaticText2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    Choice1 = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
-    Choice1->SetSelection( Choice1->Append(_("1 gracz")) );
-    Choice1->Append(_("2 graczy"));
-    Choice1->Append(_("3 graczy"));
-    Choice1->Append(_("4 graczy"));
-    BoxSizer1->Add(Choice1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
+    Button2 = new wxButton(this, ID_BUTTON2, _("zasady gry"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    BoxSizer1->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Button1 = new wxButton(this, ID_BUTTON1, _("GRAJ"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    FlexGridSizer1->Add(Button1, 1, wxALL|wxEXPAND, 5);
+    Button1->SetMinSize(wxSize(150,65));
+    FlexGridSizer1->Add(Button1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(FlexGridSizer1);
     SetSizer(FlexGridSizer1);
     Layout();
 
-    Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&Projekt_chinczykDialog::OnChoice1Select);
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Projekt_chinczykDialog::OnButton2Click);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Projekt_chinczykDialog::OnButton1Click);
     //*)
+    SetIcon(wxICON(aaaa));
 
 
 }
@@ -122,4 +119,11 @@ void Projekt_chinczykDialog::OnButton1Click(wxCommandEvent& event)
     gd.ShowModal();
     this->Close(true);
 
+}
+#include "Zasady.h"
+
+void Projekt_chinczykDialog::OnButton2Click(wxCommandEvent& event)
+{
+    Zasady z(this);
+    z.ShowModal();
 }

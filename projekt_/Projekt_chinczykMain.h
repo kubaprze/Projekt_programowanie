@@ -12,10 +12,9 @@
 
 //(*Headers(Projekt_chinczykDialog)
 #include <wx/button.h>
-#include <wx/choice.h>
 #include <wx/dialog.h>
 #include <wx/sizer.h>
-#include <wx/stattext.h>
+#include <wx/statbmp.h>
 //*)
 
 class Projekt_chinczykDialog: public wxDialog
@@ -32,20 +31,19 @@ class Projekt_chinczykDialog: public wxDialog
         void OnAbout(wxCommandEvent& event);
         void OnChoice1Select(wxCommandEvent& event);
         void OnButton1Click(wxCommandEvent& event);
+        void OnButton2Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(Projekt_chinczykDialog)
-        static const long ID_STATICTEXT1;
-        static const long ID_STATICTEXT2;
-        static const long ID_CHOICE1;
+        static const long ID_STATICBITMAP1;
+        static const long ID_BUTTON2;
         static const long ID_BUTTON1;
         //*)
 
         //(*Declarations(Projekt_chinczykDialog)
         wxButton* Button1;
-        wxChoice* Choice1;
-        wxStaticText* StaticText1;
-        wxStaticText* StaticText2;
+        wxButton* Button2;
+        wxStaticBitmap* StaticBitmap1;
         //*)
 
         DECLARE_EVENT_TABLE()
