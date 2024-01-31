@@ -1,4 +1,4 @@
-#include "Gra.h"\
+#include "Gra.h"
 #include <cstdlib>
 #include <ctime>
 

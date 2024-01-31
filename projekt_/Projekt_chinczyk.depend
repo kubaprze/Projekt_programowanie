@@ -6051,12 +6051,12 @@
 1704990124 source:c:\users\igore\documents\github\projekt_programowanie\projekt_\resource.rc
 	"wx/msw/wx.rc"
 
-1706560590 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.cpp
+1706738848 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.cpp
 	"Gra.h"
 	<cstdlib>
 	<ctime>
 
-1706527496 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.h
+1706713941 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gra.h
 	<map>
 	<set>
 	<iostream>
@@ -6075,16 +6075,18 @@
 	<wx/sizer.h>
 	<wx/statbmp.h>
 
-1706697365 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.cpp
+1706702664 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\projekt_chinczykmain.cpp
 	"Projekt_chinczykMain.h"
 	<wx/msgdlg.h>
+	<wx/bitmap.h>
+	<wx/image.h>
 	<wx/intl.h>
 	<wx/settings.h>
 	<wx/string.h>
 	"GameDialog.h"
 	"Zasady.h"
 
-1706527496 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.h
+1706739251 c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.h
 	<map>
 	"Gra.h"
 	<wx/bmpbuttn.h>
@@ -6094,10 +6096,10 @@
 	<wx/statbmp.h>
 	<wx/stattext.h>
 
-1706527496 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\resource.rc
+1706702358 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\resource.rc
 	"wx/msw/wx.rc"
 
-1706560591 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
+1706739100 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
 	"GameDialog.h"
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -6106,40 +6108,42 @@
 	<string>
 	<wx/msgdlg.h>
 
-1705405849 source:d:\igor r\projekt_\gra.cpp
+1706560590 source:d:\igor r\projekt_\gra.cpp
 	"Gra.h"
 	<cstdlib>
 	<ctime>
 
-1705405739 d:\igor r\projekt_\gra.h
+1706713941 d:\igor r\projekt_\gra.h
 	<map>
 	<set>
 	<iostream>
 
-1702476709 source:d:\igor r\projekt_\projekt_chinczykapp.cpp
+1706527496 source:d:\igor r\projekt_\projekt_chinczykapp.cpp
 	"Projekt_chinczykApp.h"
 	"Projekt_chinczykMain.h"
 	<wx/image.h>
 
-1702476709 d:\igor r\projekt_\projekt_chinczykapp.h
+1706527496 d:\igor r\projekt_\projekt_chinczykapp.h
 	<wx/app.h>
 
-1704714074 d:\igor r\projekt_\projekt_chinczykmain.h
+1706697861 d:\igor r\projekt_\projekt_chinczykmain.h
 	<wx/button.h>
-	<wx/choice.h>
 	<wx/dialog.h>
 	<wx/sizer.h>
-	<wx/stattext.h>
+	<wx/statbmp.h>
 
-1704714074 source:d:\igor r\projekt_\projekt_chinczykmain.cpp
+1706702664 source:d:\igor r\projekt_\projekt_chinczykmain.cpp
 	"Projekt_chinczykMain.h"
 	<wx/msgdlg.h>
+	<wx/bitmap.h>
+	<wx/image.h>
 	<wx/intl.h>
 	<wx/settings.h>
 	<wx/string.h>
 	"GameDialog.h"
+	"Zasady.h"
 
-1705503462 d:\igor r\projekt_\gamedialog.h
+1706712821 d:\igor r\projekt_\gamedialog.h
 	<map>
 	"Gra.h"
 	<wx/bmpbuttn.h>
@@ -6149,10 +6153,10 @@
 	<wx/statbmp.h>
 	<wx/stattext.h>
 
-1584205418 source:d:\igor r\projekt_\resource.rc
+1706702358 source:d:\igor r\projekt_\resource.rc
 	"wx/msw/wx.rc"
 
-1705503684 source:d:\igor r\projekt_\gamedialog.cpp
+1706709951 source:d:\igor r\projekt_\gamedialog.cpp
 	"GameDialog.h"
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -6216,7 +6220,7 @@
 	<string>
 	<wx/msgdlg.h>
 
-1706697545 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\zasady.cpp
+1706710436 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\zasady.cpp
 	"Zasady.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -6225,4 +6229,14 @@
 	<wx/dialog.h>
 	<wx/sizer.h>
 	<wx/stattext.h>
+
+1706696793 d:\igor r\projekt_\zasady.h
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1706710436 source:d:\igor r\projekt_\zasady.cpp
+	"Zasady.h"
+	<wx/intl.h>
+	<wx/string.h>
 

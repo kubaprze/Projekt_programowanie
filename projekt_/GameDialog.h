@@ -25,7 +25,9 @@ class GameDialog: public wxDialog
 
 		//(*Declarations(GameDialog)
 		wxBitmapButton* BitmapButton1;
+		wxBitmapButton* BitmapButton4;
 		wxButton* Button1;
+		wxButton* Button2;
 		wxStaticBitmap* StaticBitmap1;
 		wxStaticBitmap* StaticBitmap2;
 		wxStaticText* StaticText1;
@@ -39,6 +41,8 @@ class GameDialog: public wxDialog
 		static const long ID_STATICBITMAP2;
 		static const long ID_STATICBITMAP1;
 		static const long ID_BUTTON1;
+		static const long ID_BITMAPBUTTON4;
+		static const long ID_BUTTON2;
 		//*)
 
 	private:
@@ -48,6 +52,7 @@ class GameDialog: public wxDialog
 		void OnInit(wxInitDialogEvent& event);
 		void OnBitmapButton2Click(wxCommandEvent& event);
 		void OnButton1Click(wxCommandEvent& event);
+		void OnButton2Click(wxCommandEvent& event);
 		//*)
 
 		DECLARE_EVENT_TABLE()
@@ -59,7 +64,7 @@ class GameDialog: public wxDialog
         void zmien_ture();
         int ile_na_pol(int p);
         void zbij(int pole);
-        //void ruszaj(int pole);
+        void koniec();
 
 
         std::map<int,int> id2nr; // zamienia id pola na nr od 0 do 121
@@ -102,8 +107,7 @@ class GameDialog: public wxDialog
 		std::set<int> base_b = {99,100,110,111,114,71,82,93,104};
 		std::set<int> base_y = {108,109,119,120,76,61,62,63,64};
 
-		std::set<int> krzyz  = {4,5,6,15,16,17,26,27,28,37,38,39,44,45,46,47,48,49,50,51,52,53,54,55,61,62,63,
-                                64,65,66,67,68,69,70,71,72,73,74,75,76,81,82,83,92,93,94,103,104,105,114,115,116};
+		std::set<int> krzyz  = {4,5,6,15,17,26,28,37,39,44,45,46,47,48,50,51,52,53,54,55,65,66,67,68,69,70,72,73,74,75,76,81,83,92,94,103,105,114,115,116};
 
 
         int valid_g[45] = {44,45,46,47,48,37,26,15,4,5,6,17,28,39,50,51,52,53,54,65,76,75,74,73,72,83,94,105,116,115,114,103,92,81,70,69,68,67,66,55,56,57,58,59,60};

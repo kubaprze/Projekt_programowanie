@@ -12,9 +12,6 @@ class Gra
     public:
         Gra();
         ~Gra();
-        void ruch(int kolor, int kostka); // kolor i liczbe na kostce zwraca nr bitmapy na ktra rusza sie pion
-
-        int tura = 1;
 
         int gracz = 0;
 
@@ -30,13 +27,15 @@ class Gra
 
         void losuj();
 
+        int ile_graczy_skonczylo = 0;
+
 
         int los = 0;
 
 
 
     private:
-        // 4 listy dostępnych pól każda dla każdego koloru
+
 
 
 

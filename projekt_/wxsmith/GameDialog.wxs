@@ -3,7 +3,6 @@
 	<object class="wxDialog" name="GameDialog">
 		<centered>1</centered>
 		<size>615,495</size>
-		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
 		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>2</cols>
@@ -29,7 +28,7 @@
 			<object class="sizeritem">
 				<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
 					<cols>1</cols>
-					<rows>3</rows>
+					<rows>7</rows>
 					<object class="sizeritem">
 						<object class="wxFlexGridSizer" variable="FlexGridSizer4" member="no">
 							<cols>2</cols>
@@ -67,6 +66,25 @@
 						<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
 							<label>Losuj</label>
 							<handler function="OnButton1Click" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBitmapButton" name="ID_BITMAPBUTTON4" variable="BitmapButton4" member="yes">
+							<bitmap>tlo_sz.png</bitmap>
+							<size>0,300</size>
+							<enabled>0</enabled>
+						</object>
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
+							<label>Restart</label>
+							<handler function="OnButton2Click" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
