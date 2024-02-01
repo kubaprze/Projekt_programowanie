@@ -157,17 +157,12 @@ GameDialog::GameDialog(wxWindow* parent,wxWindowID id)
             Connect(pola[i]->GetId(),wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&GameDialog::OnBitmapButton1Click);
         }
 
-
-
-
     }
 
     id2nr[pola[0]->GetId()]=0;
     for(int i=1; i<121;i++){
         id2nr[pola[i]->GetId()]=i;
     }
-
-
 
 }
 
@@ -204,6 +199,49 @@ void GameDialog::OnBitmapButton1Click(wxCommandEvent& event)
         }
 
     } else {wxMessageBox(_("Nie możesz tu klikać!")); }
+
+    /*
+                    // do testow
+        wxString g,y,b,r;
+
+        for(int i=0;i<4;i++){
+            g << " "<< std::to_string(current_g[i]);
+        }
+        g << " || ";
+        for (auto it=curr_g.begin(); it!=curr_g.end(); ++it){
+            g << " " << *it;
+        }
+
+        for(int i=0;i<4;i++){
+            r <<" " << std::to_string(current_r[i]);
+        }
+        r << " || ";
+        for (auto it=curr_r.begin(); it!=curr_r.end(); ++it){
+            r << " " << *it;
+        }
+        for(int i=0;i<4;i++){
+            y << " " + std::to_string(current_y[i]);
+        }
+        y << " || ";
+        for (auto it=curr_y.begin(); it!=curr_y.end(); ++it){
+            y << " " << *it;
+        }
+        for(int i=0;i<4;i++){
+            b=b+" " + std::to_string(current_b[i]);
+        }
+        b << " || ";
+        for (auto it=curr_b.begin(); it!=curr_b.end(); ++it){
+            b << " " << *it;
+        }
+
+        wxString g1 = "Pola zielonych: " +g;
+        wxString r1 = "Pola czerwonych: "+ r;
+        wxString y1 = "Pola zoltych: "+ y;
+        wxString b1 = "Pola niebieskich: " +b;
+
+        g1 << "\n" << y1<< "\n" <<r1<< "\n" <<b1<< "\n";
+        wxMessageBox(g1);
+        */
 }
 
 
@@ -234,7 +272,6 @@ void GameDialog::OnButton1Click(wxCommandEvent& event) // przycisk od losowania
         int l = gra.los;
         StaticBitmap1->SetBitmap(kostka[l-1]);
 
-
         // tura musi sie zmienic gdy gracz ma wszytskie pionki w bazie i nie wylosuje szostki
         if((gra.gracz==0) && (gra.los != 6) && ((gra.ile_w_bazie_g + gra.ile_skonczylo_g) == 4)){
             zmien_ture();
@@ -259,11 +296,17 @@ void GameDialog::wstaw_piona()
     if(gra.gracz == 0){
         zbij(44);
         pola[home_g[gra.ile_w_bazie_g-1]]->SetBitmap(rysunki[0]);
-        current_g[gra.ile_w_bazie_g-1] = 44;
-        gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
-        auto it=curr_g.find(home_g[gra.ile_w_bazie_g]);
+        for(int i=0; i<4; i++){
+            if(current_g[i] == home_g[gra.ile_w_bazie_g-1]){
+                current_g[i] = 44;
+                i=4;
+            }
+        }
+        auto it=curr_g.find(home_g[gra.ile_w_bazie_g-1]);
         curr_g.erase(it);
         curr_g.insert(44);
+        gra.ile_w_bazie_g = gra.ile_w_bazie_g-1;
+
         int ile2=ile_na_pol(44);
         if(ile2==1){
             pola[44]->SetBitmap(pionki[0]);}
@@ -273,17 +316,21 @@ void GameDialog::wstaw_piona()
             pola[44]->SetBitmap(pionki3[0]);}
         if(ile2==4){
             pola[44]->SetBitmap(pionki4[0]);}
-
-
     }
+
     if(gra.gracz == 1){
         zbij(6);
         pola[home_r[gra.ile_w_bazie_r-1]]->SetBitmap(rysunki[1]);
-        current_r[gra.ile_w_bazie_r-1] = 6;
-        gra.ile_w_bazie_r = gra.ile_w_bazie_r-1;
-        auto it= curr_r.find(home_r[gra.ile_w_bazie_r]);
+        for(int i=0; i<4; i++){
+            if(current_r[i] == home_r[gra.ile_w_bazie_r-1]){
+                current_r[i] = 6;
+                i=4;
+            }
+        }
+        auto it= curr_r.find(home_r[gra.ile_w_bazie_r-1]);
         curr_r.erase(it);
         curr_r.insert(6);
+        gra.ile_w_bazie_r = gra.ile_w_bazie_r-1;
 
         int ile2=ile_na_pol(6);
         if(ile2==1){
@@ -299,11 +346,17 @@ void GameDialog::wstaw_piona()
     if(gra.gracz == 2){
         zbij(76);
         pola[home_y[gra.ile_w_bazie_y-1]]->SetBitmap(rysunki[2]);
-        current_y[gra.ile_w_bazie_y-1] = 76;
-        gra.ile_w_bazie_y = gra.ile_w_bazie_y-1;
-        auto it=  curr_y.find(home_y[gra.ile_w_bazie_y]);
+        for(int i=0; i<4; i++){
+            if(current_y[i] == home_y[gra.ile_w_bazie_y-1]){
+                current_y[i] = 76;
+                i=4;
+            }
+        }
+        auto it=  curr_y.find(home_y[gra.ile_w_bazie_y-1]);
         curr_y.erase(it);
         curr_y.insert(76);
+        gra.ile_w_bazie_y = gra.ile_w_bazie_y-1;
+
         int ile2=ile_na_pol(76);
         if(ile2==1){
             pola[76]->SetBitmap(pionki[2]);}
@@ -318,11 +371,16 @@ void GameDialog::wstaw_piona()
     if(gra.gracz == 3){
         zbij(114);
         pola[home_b[gra.ile_w_bazie_b-1]]->SetBitmap(rysunki[3]);
-        current_b[gra.ile_w_bazie_b-1] = 114;
-        gra.ile_w_bazie_b = gra.ile_w_bazie_b-1;
-        auto it = curr_b.find(home_b[gra.ile_w_bazie_b]);
+        for(int i=0; i<4; i++){
+            if(current_b[i] == home_b[gra.ile_w_bazie_b-1]){
+                current_b[i] = 114;
+                i=4;
+            }
+        }
+        auto it = curr_b.find(home_b[gra.ile_w_bazie_b-1]);
         curr_b.erase(it); // usuwa id z bazy
         curr_b.insert(114); // dodaje id pole startowego
+        gra.ile_w_bazie_b = gra.ile_w_bazie_b-1;
 
         int ile2=ile_na_pol(114);
         if(ile2==1){
@@ -373,20 +431,21 @@ bool GameDialog::sprawdz(int x,int p)
         return (curr_b.find(p) != curr_b.end());
     }
 }
+
 void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
 {
     int ile=ile_na_pol(pol);
     if(ile==1){
-         if(pol==44 || pol==56 || pol==57 || pol==58 || pol==59){
+         if(pol==44){
             pola[pol]->SetBitmap(rysunki[0]);
         }
-        else if(pol==6 || pol==16 || pol==27 || pol==38 || pol==49){
+        else if(pol==6){
             pola[pol]->SetBitmap(rysunki[1]);
         }
-        else if(pol==76 || pol==64 ||  pol==63 || pol==62 || pol==61){
+        else if(pol==76){
             pola[pol]->SetBitmap(rysunki[2]);
         }
-        else if(pol==114 || pol==104 || pol==93 || pol==82 || pol==71){
+        else if(pol==114){
             pola[pol]->SetBitmap(rysunki[3]);
         }
         else{
@@ -407,13 +466,21 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
                 k=i;
                 i=4;
             }
-
         }
         for(int g=0;g<45;g++)
         {
             if(current_g[k]==valid_g[g]){
                 if(g+los>=44){
                     wxMessageBox(_("Musisz wyrzucić mniejszą liczbę oczek, tracisz turę za złą decyzję"));
+                    if(ile==1)
+                        pola[pol]->SetBitmap(pionki[0]);
+                    if(ile==2)
+                        pola[pol]->SetBitmap(pionki2[0]);
+                    if(ile==3)
+                        pola[pol]->SetBitmap(pionki3[0]);
+                    if(ile==4)
+                        pola[pol]->SetBitmap(pionki4[0]);
+
                     g=45;
                     gra.los=0;
                 }
@@ -466,6 +533,15 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
             if(current_r[k]==valid_r[g]){
                if(g+los>=44){
                         wxMessageBox(_("Musisz wyrzucić mniejszą liczbę oczek, tracisz turę za złą decyzję"));
+                        if(ile==1)
+                            pola[pol]->SetBitmap(pionki[1]);
+                        if(ile==2)
+                            pola[pol]->SetBitmap(pionki2[1]);
+                        if(ile==3)
+                            pola[pol]->SetBitmap(pionki3[1]);
+                        if(ile==4)
+                            pola[pol]->SetBitmap(pionki4[1]);
+
                         g=45;
                         gra.los=0;
                 }else{
@@ -516,6 +592,15 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
             if(current_y[k]==valid_y[g]){
                 if(g+los>=44){
                     wxMessageBox(_("Musisz wyrzucić mniejszą liczbę oczek, tracisz turę za złą decyzję"));
+                    if(ile==1)
+                        pola[pol]->SetBitmap(pionki[2]);
+                    if(ile==2)
+                        pola[pol]->SetBitmap(pionki2[2]);
+                    if(ile==3)
+                        pola[pol]->SetBitmap(pionki3[2]);
+                    if(ile==4)
+                        pola[pol]->SetBitmap(pionki4[2]);
+
                     g=45;
                     gra.los=0;
                 }else{
@@ -567,6 +652,15 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
             if(current_b[k]==valid_b[g]){
                 if(g+los>=44){
                     wxMessageBox(_("Musisz wyrzucić mniejszą liczbę oczek, tracisz turę za złą decyzję"));
+                    if(ile==1)
+                        pola[pol]->SetBitmap(pionki[3]);
+                    if(ile==2)
+                        pola[pol]->SetBitmap(pionki2[3]);
+                    if(ile==3)
+                        pola[pol]->SetBitmap(pionki3[3]);
+                    if(ile==4)
+                        pola[pol]->SetBitmap(pionki4[3]);
+
                     g=45;
                     gra.los=0;
                 }
@@ -601,7 +695,6 @@ void GameDialog::ruch(int los,int pol)//fukncja do poruszania się
 
 void GameDialog::zbij(int p)
 {
-
     if(gra.gracz==0)
     {
         for(int i=0;i<4;i++){
@@ -755,11 +848,6 @@ void GameDialog::koniec()
             break;
         }
 }
-
-
-
-
-
 
 void GameDialog::OnButton2Click(wxCommandEvent& event)  // reset
 {

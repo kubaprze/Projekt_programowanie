@@ -6099,7 +6099,7 @@
 1706702358 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\resource.rc
 	"wx/msw/wx.rc"
 
-1706786865 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
+1706815770 source:c:\users\jakub\documents\github\projekt_programowanie\projekt_\gamedialog.cpp
 	"GameDialog.h"
 	<wx/bitmap.h>
 	<wx/image.h>
